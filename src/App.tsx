@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import './App.css'
 
@@ -11,14 +12,14 @@ interface Post {
     name: string;
   }
   forecast: {
-    forecastday: forecastDay[];
+    forecastday: ForecastDay[];
   }
 }
 
-interface forecastDay {
+interface ForecastDay {
   date: string;
-  avgtemp_c: number;
   day: {
+    avgtemp_c: number;
     condition: {
       icon: string;
       text: string;
@@ -57,13 +58,19 @@ export default function App() {
     };
     console.log(post);
     fetchPosts();
-  },[country]);
+  }, [country]);
 
   if (isLoading) {
     return <div>Loading...</div>
   }
   if (error) {
     return <div>Semething went wrong! please try again.</div>
+  }
+  if (error == "400") {
+    <div>
+      <input className="input" type="text" value={input} onChange={handleOnChange}></input>
+      <button onClick={handleOnClick} className="button">Search</button>)
+    </div>
   }
   if (!post) {
     return <div>No weather data awailable</div>
@@ -76,7 +83,7 @@ export default function App() {
     setCountry(input);
     setInput("");
   }
-  function handleWeekdays(day){
+  function handleWeekdays(day: any){
     const d = new Date(day);
     const x = d.getDay();
     return x;
@@ -84,12 +91,22 @@ export default function App() {
 
   return (
     <div>
-      <div>
-        <input type="text" value={input} onChange={handleOnChange}></input>
-        <button onClick={handleOnClick}>Click me!</button>
+      <div className="search-bar">
+        <input className="input" type="text" value={input} onChange={handleOnChange}></input>
+        <button onClick={handleOnClick} className="button">Search</button>
+        <h2>{post.location.name}</h2>
+        <h3>{post.location.country}</h3>
       </div>
-      <div>
-        {post && post.forecast.forecastDay.map()}
+      <div className="week-container">
+        {post && post.forecast.forecastday.map((value, index) =>{
+          return (
+          <div className="week-day" key={index}>
+            <h4>{weekdays[handleWeekdays(value.date)]}</h4>
+            <img src={value.day.condition.icon}></img>
+            <h5>{Math.round(value.day.avgtemp_c)} °C</h5>
+            <h6>{value.day.condition.text}</h6>
+          </div>
+        )})}
       </div>
     </div>
   );
