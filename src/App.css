@@ -9,14 +9,18 @@ body{
     box-sizing: border-box;
     width: 400px;
     height: 50px;
-    text: 5rem;
+    font-size: 40px;
+    padding: 10px;
 }
 .button{
     width: 70px;
     height: 50px;
 }
 .search-bar{
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 .week-container{
     display: flex;
@@ -25,5 +29,8 @@ body{
 }
 .week-day{
     margin: 20px;
+    text-align: center;
+}
+.country-title{
     text-align: center;
 }
