@@ -7,14 +7,14 @@ body{
 }
 .input{
     box-sizing: border-box;
-    width: 400px;
-    height: 50px;
+    width: 16rem;
+    height: 3rem;
     font-size: 40px;
     padding: 10px;
 }
 .button{
-    width: 70px;
-    height: 50px;
+    width: 5rem;
+    height: 3rem;
 }
 .search-bar{
     display: flex;
@@ -26,11 +26,28 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    
 }
 .week-day{
+    width: 10rem;
     margin: 20px;
     text-align: center;
+    border: 1px solid black;
+    box-shadow: 2px 2px black;
+    background-color: rgb(85, 95, 69);
+    border-radius: 3rem;
 }
 .country-title{
     text-align: center;
+}
+.box-title{
+    color: rgb(218, 218, 218);
+}
+.box-temp{
+    color: rgb(218, 218, 218);
+}
+.box-frecast{
+    color: rgb(218, 218, 218);
+    font-size: 1rem;
+    
 }
